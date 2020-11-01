@@ -3,70 +3,80 @@
     "count": 3,
     "description": "Denim-panelled hoodie with embroidery",
     "id": "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
-    "price": 179.0,
-    "title": "S-THOS"
+    "price": 179.00,
+    "title": "S-THOS",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dw9e5338a8/images/large/A00119_0PAZP_9XX_F.jpg"
   },
   {
     "count": 7,
     "description": "Tie-dyed hoodie with logo embroidery",
     "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a0",
-    "price": 137,
-    "title": "S-ALBYEL-X4"
+    "price": 137.00,
+    "title": "S-ALBYEL-X4",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dw474f4ac8/images/large/A00285_0PAZQ_3BBA_F.jpg"
   },
   {
     "count": 2,
-    "description": "Hybrid boots in nubuck",
+    "description": "High-top sneakers in washed nylon",
     "id": "7567ec4b-b10c-48c5-9345-fc73c48a76a2",
-    "price": 239,
-    "title": "H-SHIROKI DBBT"
+    "price": 89.00,
+    "title": "S-DESE MID CUT",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dweb4c778b/images/large/Y01994_P0465_T8013_F.jpg"
   },
   {
     "count": 13,
     "description": "High-top sneakers in nylon and leather",
     "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a1",
-    "price": 95,
-    "title": "S-DESE ML"
+    "price": 95.00,
+    "title": "S-DESE ML",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dwd24a033b/images/large/Y02446_PS719_T8013_F.jpg"
   },
   {
     "count": 12,
     "description": "Slip-on sneakers in mix materials",
     "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a2",
-    "price": 179,
-    "title": "S-BRENTHA DEC"
+    "price": 179.00,
+    "title": "S-BRENTHA DEC",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dw4a6e827c/images/large/Y02011_P3526_H8246_F.jpg"
   },
   {
     "count": 3,
     "description": "Hooded quilted down jacket",
     "id": "7567ec4b-b10c-48c5-9345-fc73348a80a1",
-    "price": 269,
-    "title": "W-RUSSELL"
+    "price": 269.00,
+    "title": "W-RUSSELL",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dwc67bb0fb/images/large/A00555_0HAVA_62E_O.jpg"
   },
   {
     "count": 1,
-    "description": "T-shirt with 1978 logo print",
+    "description": "Polo shirt with Mohawk patch",
     "id": "7567ec4b-b10c-48c5-9445-fc73c48430a2",
-    "price": 34,
-    "title": "T-DIEGOS-K35"
+    "price": 59.00,
+    "title": "T-POLO-WORKY",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dwc991c2ca/images/large/00SEFP_0HAXR_900_F.jpg"
   },
   {
     "count": 5,
-    "description": "Western shirt in treated corduroy",
+    "description": "Cross-body in leather and coated denim",
     "id": "7567ec4b-b10c-45c5-9345-fc77c48a80a1",
-    "price": 149,
-    "title": "S-EAST-LONG-VE"
+    "price": 119.00,
+    "title": "TASSYO",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dw4f94ae42/images/large/X07430_P3575_T8013_F.jpg"
   },
   {
     "count": 8,
-    "description": "Slim",
+    "description": "Twill baseball cap with Mohawk patch",
     "id": "7567ec4b-b10c-48c5-9445-fc73c48a80a2",
-    "price": 160,
-    "title": "D-Strukt 009HH"
+    "price": 47.00,
+    "title": "CONDI-MAX",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dwa4800caf/images/large/00SHHZ_0NAUI_5IR_F.jpg"
   },
   {
     "count": 9,
     "description": "Pullover with Mohawk logo",
     "id": "7567ec4b-b10c-45c5-9345-fc73c48a80a1",
-    "price": 119,
-    "title": "K-CROFT"
+    "price": 119.00,
+    "title": "K-CROFT",
+    "imageUrl": "https://shop.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dw72c84ec7/images/large/A00876_0IAYP_9XX_F.jpg"
   }
 ]
