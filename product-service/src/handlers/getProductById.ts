@@ -22,6 +22,12 @@ export const getProductById: APIGatewayProxyHandler = async (event) => {
       body: "Product not found",
     };
   } catch (error) {
-    console.log(error);
+    return {
+      statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: "Something went wrong.",
+    };
   }
 };

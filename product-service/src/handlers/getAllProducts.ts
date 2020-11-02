@@ -12,6 +12,12 @@ export const getAllProducts: APIGatewayProxyHandler = async (event) => {
       body: JSON.stringify(productList),
     };
   } catch (error) {
-    console.log(error);
+    return {
+      statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: "Something went wrong.",
+    };
   }
 };
