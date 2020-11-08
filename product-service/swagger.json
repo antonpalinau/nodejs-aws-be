@@ -1,0 +1,144 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Product service documentation",
+      "description": "Product service specification",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "name": "Anton Palinau"
+      },
+      "license": {
+        "name": "MIT"
+      }
+    },
+    "host": "akqu39ja09.execute-api.eu-west-1.amazonaws.com",
+    "basePath": "/dev",
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/products": {
+        "get": {
+          "description": "Returns all products",
+          "operationId": "getAllProducts",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Product response",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            },
+            "default": {
+              "description": "Server Error",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/products/{productId}": {
+        "get": {
+          "description": "Returns a product by id",
+          "operationId": "getProductById",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "Id of a product",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Product response",
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            },
+            "default": {
+              "description": "Server error",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Product": {
+        "type": "object",
+        "required": [
+          "id",
+          "price",
+          "title",
+          "description",
+          "count",
+          "imageUrl"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "7567ec4b-b10c-48c5-9345-fc73c48a80a0"
+          },
+          "price": {
+            "type": "number",
+            "format": "float",
+            "example": 50.00
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "example": 6
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "imageUrl": {
+              "type": "string"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "code",
+          "body"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "example": 500
+          },
+          "body": {
+            "type": "string",
+            "example": "Something went wrong."
+          }
+        }
+      }
+    }
+  }
