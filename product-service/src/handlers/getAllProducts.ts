@@ -1,40 +1,29 @@
-import { Client } from "pg";
 import { APIGatewayProxyHandler } from "aws-lambda";
-
-const { PG_HOST, PG_PORT, PG_DATABASE, PG_USERNAME, PG_PASSWORD } = process.env;
-const dbOptions = {
-  host: PG_HOST,
-  port: PG_PORT,
-  database: PG_DATABASE,
-  user: PG_USERNAME,
-  password: PG_PASSWORD,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-  connectionTimeoutMillis: 5000,
-};
+import { createClient } from "../utils/db/createClient";
+import { defaultCors } from "../constants";
 
 export const getAllProducts: APIGatewayProxyHandler = async (event) => {
-  const client = new Client(dbOptions);
-  await client.connect();
+  console.log("Lambda getAllProducts invocation with event: ", event);
+  const client = await createClient();
+  const getProductsQuery = `
+    SELECT p.id, p.title, p.description, p.price, s.count
+      FROM product p
+      INNER JOIN stock s ON p.id = s.product_id
+  `;
+
   try {
-    console.log("Lambda getAllProducts invocation with event: ", event);
-    const { rows: product } = await client.query(`select * from product`);
-    console.log(product);
+    const products = (await client.query(getProductsQuery)).rows;
+
     return {
       statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(product),
+      headers: defaultCors,
+      body: JSON.stringify(products, null, 2),
     };
   } catch (error) {
     return {
       statusCode: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: "Something went wrong.",
+      headers: defaultCors,
+      body: "Internal server error.",
     };
   } finally {
     client.end();

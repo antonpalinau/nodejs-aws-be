@@ -1,19 +1,27 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import productList from "../assets/productList.json";
+import { createClient } from "../utils/db/createClient";
+import { defaultCors } from "../constants";
 
 export const getProductById: APIGatewayProxyHandler = async (event) => {
+  console.log("Lambda getProductById invocation with event: ", event);
+  const client = await createClient();
+
   try {
-    console.log("Lambda getProductById invocation with event: ", event);
     const { productId } = event.pathParameters;
-    const product = productList.find((product) => product.id === productId);
+    const getProductQuery = `
+      SELECT p.id, p.description, p.title, p.price, s.count
+        FROM product p, stock s
+          WHERE p.id = s.product_id AND p.id = $1
+    `;
+    console.log("by id: ", await client.query(getProductQuery, [productId]));
+    const product = (await client.query(getProductQuery, [productId]))
+      ?.rows?.[0];
 
     if (product) {
       return {
         statusCode: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify(product),
+        headers: defaultCors,
+        body: JSON.stringify(product, null, 2),
       };
     }
 
@@ -24,10 +32,10 @@ export const getProductById: APIGatewayProxyHandler = async (event) => {
   } catch (error) {
     return {
       statusCode: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: "Something went wrong.",
+      headers: defaultCors,
+      body: "Internal server error.",
     };
+  } finally {
+    client.end();
   }
 };

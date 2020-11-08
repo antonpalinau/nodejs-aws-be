@@ -6,7 +6,6 @@ insert into product(title, description, price) values
 	('W-RUSSELL', 'Hooded quilted down jacket', 269.00),
 	('T-POLO-WORKY', 'Polo shirt with Mohawk patch', 59.00),
 	('TASSYO', 'Cross-body in leather and coated denim', 119.00),
-	('CONDI-MAX', 'Twill baseball cap with Mohawk patch', 47.00),
 	('K-CROFT', 'Pullover with Mohawk logo', 119.00)
 
 insert into stock (product_id, count) values
