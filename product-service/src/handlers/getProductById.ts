@@ -1,4 +1,5 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
+import { validate } from "uuid";
 import { createClient } from "../utils/db/createClient";
 import { defaultCors } from "../constants";
 
@@ -8,6 +9,15 @@ export const getProductById: APIGatewayProxyHandler = async (event) => {
 
   try {
     const { productId } = event.pathParameters;
+
+    if (!validate(productId)) {
+      return {
+        statusCode: 400,
+        headers: defaultCors,
+        body: "UUID is expected",
+      };
+    }
+
     const getProductQuery = `
       SELECT p.id, p.description, p.title, p.price, s.count
         FROM product p, stock s
