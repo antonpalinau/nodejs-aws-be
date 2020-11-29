@@ -38,6 +38,83 @@ const serverlessConfiguration: Serverless = {
       PG_DATABASE: "${env:PG_DATABASE}",
       PG_USERNAME: "${env:PG_USERNAME}",
       PG_PASSWORD: "${env:PG_PASSWORD}",
+      SNS_ARN: {
+        Ref: "SNSTopic",
+      },
+    },
+    iamRoleStatements: [
+      {
+        Effect: "Allow",
+        Action: "sqs:*",
+        Resource: [
+          {
+            "Fn::GetAtt": ["SQSQueue", "Arn"],
+          },
+        ],
+      },
+      {
+        Effect: "Allow",
+        Action: "sns:*",
+        Resource: [
+          {
+            Ref: "SNSTopic",
+          },
+        ],
+      },
+    ],
+  },
+  resources: {
+    Outputs: {
+      SQSQueueUrl: {
+        Value: {
+          Ref: "SQSQueue",
+        },
+      },
+      SQSQueueArn: {
+        Value: {
+          "Fn::GetAtt": ["SQSQueue", "Arn"],
+        },
+      },
+    },
+    Resources: {
+      SQSQueue: {
+        Type: "AWS::SQS::Queue",
+        Properties: {
+          QueueName: "catalogItemsQueue",
+        },
+      },
+      SNSTopic: {
+        Type: "AWS::SNS::Topic",
+        Properties: {
+          TopicName: "createProductTopic",
+        },
+      },
+      SNSSucessSubscription: {
+        Type: "AWS::SNS::Subscription",
+        Properties: {
+          Endpoint: "${self:provider.environment.SNS_SUCCESS_EMAIL}",
+          Protocol: "email",
+          TopicArn: {
+            Ref: "SNSTopic",
+          },
+          FilterPolicy: {
+            status: ["Success"],
+          },
+        },
+      },
+      SNSErrorSubscription: {
+        Type: "AWS::SNS::Subscription",
+        Properties: {
+          Endpoint: "${self:provider.environment.SNS_ERROR_EMAIL}",
+          Protocol: "email",
+          TopicArn: {
+            Ref: "SNSTopic",
+          },
+          FilterPolicy: {
+            status: ["Error"],
+          },
+        },
+      },
     },
   },
   functions: {
@@ -80,6 +157,19 @@ const serverlessConfiguration: Serverless = {
             method: "post",
             path: "products",
             cors: true,
+          },
+        },
+      ],
+    },
+    catalogBatchProcess: {
+      handler: "handler.catalogBatchProcess",
+      events: [
+        {
+          sqs: {
+            batchSize: 5,
+            arn: {
+              "Fn::GetAtt": ["SQSQueue", "Arn"],
+            },
           },
         },
       ],

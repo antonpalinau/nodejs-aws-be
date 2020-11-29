@@ -39,9 +39,15 @@ const serverlessConfiguration: Serverless = {
         Action: "s3:*",
         Resource: ["arn:aws:s3:::${env:BUCKET}/*"],
       },
+      {
+        Effect: "Allow",
+        Action: "sqs:*",
+        Resource: "${cf:product-service-${self:provider.stage}.SQSQueueArn}",
+      },
     ],
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
+      SQS_URL: "${cf:product-service-${self:provider.stage}.SQSQueueUrl}",
     },
   },
   functions: {
